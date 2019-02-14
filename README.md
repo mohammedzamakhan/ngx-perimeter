@@ -18,7 +18,7 @@ In our applications, we download javascript files or call an API etc after the u
 
 The `ngx-perimeter` solves this by giving you infortion about user interaction before user even interacts with it. By using this project, based on the mouse movements (Desktop Applicaiton), if the mouse is near a element by some distance (input: `padding`), you get a notification using a event (`breach`) to act before the user acts.
 
-You can also use the PerimeterStrategy to load routes if the user is near the route. Check `@ngx-perimeter/strategy`.
+You can also use the PerimeterStrategy to load routes if the user is near the route. Check [@ngx-perimeter/strategy](https://github.com/mohammedzamakhan/ngx-perimeter/tree/master/projects/perimeter-strategy).
 
 ## Install
 
