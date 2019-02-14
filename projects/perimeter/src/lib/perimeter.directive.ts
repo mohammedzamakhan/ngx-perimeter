@@ -1,6 +1,9 @@
 import { Directive, ElementRef, Input, Output, EventEmitter, AfterViewInit, OnDestroy } from '@angular/core';
 import { fromEvent, Observable, Subscription } from 'rxjs';
 
+const mousemove: Observable<any> = fromEvent(window, 'mousemove');
+const resize: Observable<any> = fromEvent(window, 'resize');
+
 @Directive({
   selector: '[ngxPerimeter]'
 })
@@ -9,25 +12,20 @@ export class PerimeterDirective implements AfterViewInit, OnDestroy {
   @Input() once = false;
   @Output() breach = new EventEmitter();
   breached = false;
-  mousemove: Observable<any>;
-  resize: Observable<any>;
 
   mouseMoveSubscription: Subscription;
   resizeSubscription: Subscription;
 
-  bounds;
-  initialOffset;
+  private bounds: any;
+  private initialOffset: number;
 
-  constructor(private el: ElementRef) {
-    this.mousemove = fromEvent(window, 'mousemove');
-    this.resize = fromEvent(window, 'resize');
-  }
+  constructor(private el: ElementRef) { }
 
   ngAfterViewInit() {
     this.bounds = this.el.nativeElement.getBoundingClientRect();
     this.initialOffset = window.pageYOffset;
 
-    this.mouseMoveSubscription = this.mousemove.subscribe(({ clientX, clientY }) => {
+    this.mouseMoveSubscription = mousemove.subscribe(({ clientX, clientY }) => {
       const { initialOffset, bounds, breach, once } = this;
       if (!bounds) {
         return;
@@ -67,7 +65,7 @@ export class PerimeterDirective implements AfterViewInit, OnDestroy {
 
     });
 
-    this.resizeSubscription = this.resize.subscribe(() => {
+    this.resizeSubscription = resize.subscribe(() => {
       if (this.el.nativeElement) {
         this.initialOffset = window.pageYOffset;
         this.bounds = this.el.nativeElement.getBoundingClientRect();

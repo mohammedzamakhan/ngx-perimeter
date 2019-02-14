@@ -19,11 +19,17 @@
       "dom"
     ],
     "paths": {
-      "perimeter": [
+      "@ngx-perimeter/core": [
         "dist/perimeter"
       ],
-      "perimeter/*": [
+      "@ngx-perimeter/core/*": [
         "dist/perimeter/*"
+      ],
+      "@ngx-perimeter/strategy": [
+        "dist/perimeter-strategy"
+      ],
+      "@ngx-perimeter/strategy/*": [
+        "dist/perimeter-strategy/*"
       ]
     }
   }

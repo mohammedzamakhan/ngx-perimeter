@@ -8,12 +8,16 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "build:lib": "ng build perimeter",
-    "npm_pack": "cd dist/perimeter && npm pack",
-    "copy-license": "cpy .\\LICENSE .\\dist\\perimeter",
-    "copy-readme": "cpy .\\README.md .\\dist\\perimeter",
-    "copy-files": "npm run copy-license && npm run copy-readme",
-    "package": "npm run build:lib && npm run copy-files && npm run npm_pack"
+    "build:perimeter": "ng build perimeter",
+    "npm_pack:perimeter": "cd dist/perimeter && npm pack",
+    "copy-license:perimeter": "cpy .\\LICENSE .\\dist\\perimeter",
+    "copy-files:perimeter": "npm run copy-license:perimeter",
+    "package:perimeter": "npm run build:perimeter && npm run copy-files:perimeter && npm run npm_pack:perimeter",
+    "build:perimeter-strategy": "ng build perimeter-strategy",
+    "npm_pack:perimeter-strategy": "cd dist/perimeter-strategy && npm pack",
+    "copy-license:perimeter-strategy": "cpy .\\LICENSE .\\dist\\perimeter-strategy",
+    "copy-files:perimeter-strategy": "npm run copy-license:perimeter-strategy",
+    "package:perimeter-strategy": "npm run build:perimeter-strategy && npm run copy-files:perimeter-strategy && npm run npm_pack:perimeter-strategy"
   },
   "private": true,
   "dependencies": {
