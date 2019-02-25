@@ -15,7 +15,9 @@ import { HomeComponent } from './home/home.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    PerimeterModule,
+    PerimeterModule.forRoot({
+      padding: 50,
+    }),
     PerimeterStrategyModule
   ],
   providers: [],

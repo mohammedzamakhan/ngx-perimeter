@@ -1,5 +1,6 @@
 import { Directive, ElementRef, Input, Output, EventEmitter, AfterViewInit, OnDestroy } from '@angular/core';
 import { fromEvent, Observable, Subscription } from 'rxjs';
+import { PerimeterService } from './perimeter.service';
 
 const mousemove: Observable<any> = fromEvent(window, 'mousemove');
 const resize: Observable<any> = fromEvent(window, 'resize');
@@ -19,7 +20,7 @@ export class PerimeterDirective implements AfterViewInit, OnDestroy {
   private bounds: any;
   private initialOffset: number;
 
-  constructor(private el: ElementRef) { }
+  constructor(private el: ElementRef, private ps: PerimeterService) { }
 
   ngAfterViewInit() {
     this.bounds = this.el.nativeElement.getBoundingClientRect();
@@ -34,6 +35,8 @@ export class PerimeterDirective implements AfterViewInit, OnDestroy {
       const { top, right, bottom, left } = bounds;
       if (typeof this.padding === 'string') {
         this.padding = parseInt(this.padding, 10);
+      } else if (!this.padding && this.ps.padding) {
+        this.padding = this.ps.padding;
       }
 
       if (
@@ -52,6 +55,9 @@ export class PerimeterDirective implements AfterViewInit, OnDestroy {
         }
 
         breach.emit();
+        if (this.ps.breach) {
+          this.ps.breach();
+        }
         this.breached = true;
 
         if (once) {

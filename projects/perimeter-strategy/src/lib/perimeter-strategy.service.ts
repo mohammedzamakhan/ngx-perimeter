@@ -7,7 +7,7 @@ import { findPath, containsTree } from './utils';
 @Injectable()
 export class PerimeterStrategy implements PreloadingStrategy {
 
-  constructor(private perimeterService: PerimeterService, private router: Router) { }
+  constructor(private perimeterService: PerimeterBreachService, private router: Router) { }
 
   preload(route: Route, load: () => {}) {
     const fullPath = findPath(this.router.config, route);
@@ -26,7 +26,7 @@ export class PerimeterStrategy implements PreloadingStrategy {
 }
 
 @Injectable()
-export class PerimeterService {
+export class PerimeterBreachService {
   breached$: Subject<any> = new Subject();
 
   addBreach(route: any) {
